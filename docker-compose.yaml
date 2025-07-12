@@ -41,3 +41,16 @@ services:
       REACT_APP_KEYCLOAK_REALM: reports-realm
       REACT_APP_KEYCLOAK_CLIENT_ID: reports-frontend
       REACT_APP_KEYCLOAK_PKCE_METHOD: S256
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - keycloak
+    environment:
+      API_KEYCLOAK_URL: http://keycloak:8080
+      API_KEYCLOAK_REALM: reports-realm
+      API_KEYCLOAK_CLIENT_ID: reports-api
+      API_KEYCLOAK_CLIENT_SECRET: oNwoLQdvJAvRcL89SydqCWCe5ry1jMgq
